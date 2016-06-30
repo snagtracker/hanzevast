@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import ENV from '../config/environment';
 import { storageFor } from 'ember-local-storage';
+import Form from '../forms/onderhoud';
 
 const {
   inject: {
@@ -8,7 +9,8 @@ const {
   },
   String: {
     capitalize
-  }
+  },
+  getOwner
 } = Ember;
 
 export default Ember.Route.extend({
@@ -18,7 +20,8 @@ export default Ember.Route.extend({
   model(params) {
     return {
       src: `${ENV.rootURL}images/portefeuille/square_${params.name}.jpg`,
-      name: params.name.split('-').map((p) => capitalize(p)).join(' ')
+      name: params.name.split('-').map((p) => capitalize(p)).join(' '),
+      form: Form.create(getOwner(this).ownerInjection())
     };
   },
 

@@ -20,6 +20,7 @@
 
   {{#card.content}}
     <input type="hidden" name="redirect_to" value={{concat origin (href-to "pand.success")}}/>
+    <input type="hidden" name="pand" value={{model.name}}/>
     <div layout="" layout-sm="row">
       {{paper-input
         flex=50
@@ -45,10 +46,10 @@
         flex=100
         label="Korte omschrijving"
         autofocus=hasAccount
-        value=model.subject
+        value=model.form.subject
         maxlength=50
-        onChange=(action (mut model.subject))
-        errors=model.validations.attrs.subject.messages
+        onChange=(action (mut model.form.subject))
+        errors=(v-get model.form 'subject' 'messages')
         passThru=(hash name="omschrijving")
       }}
     </div>
@@ -57,9 +58,9 @@
         flex=100
         label="Details"
         textarea=true
-        value=model.body
-        onChange=(action (mut model.body))
-        errors=model.validations.attrs.body.messages
+        value=model.form.body
+        onChange=(action (mut model.form.body))
+        errors=(v-get model.form 'body' 'messages')
         passThru=(hash name="details")
       }}
     </div>
@@ -71,17 +72,17 @@
         flex=70
         label="Foto"
         type="file"
-        value=model.photo
+        value=model.form.photo
         onFocus=(action "addHandler")
-        onChange=null
-        errors=model.validations.attrs.photo.messages
+        onChange=(action (mut model.form.photo))
+        errors=(v-get model.form 'photo' 'messages')
         passThru=(hash accept="image/*" name="foto")
       }}
     </div>
   {{/card.content}}
   {{#card.actions}}
-    {{#paper-button type="submit"}}
-      Verstuur naar Hanzevast
+    {{#paper-button type="submit" raised=true primary=true disabled=(not (and (v-get account 'isValid') (v-get model.form 'isValid')))}}
+      Verstuur melding
     {{/paper-button}}
 {{!--     {{paper-input
       label="Verstuur"
