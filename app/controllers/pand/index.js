@@ -6,15 +6,10 @@ import ENV from '../../config/environment';
 const {
   $,
   isEmpty,
-  computed,
-  inject: {
-    controller
-  }
+  computed
 } = Ember;
 
 export default Ember.Controller.extend({
-  pand: controller(),
-
   account: storageFor('account'),
   hasAccount: computed('account.naam', 'account.email', function() {
     return !isEmpty(this.get('account.naam')) && !isEmpty(this.get('account.email'));
