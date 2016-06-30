@@ -19,10 +19,10 @@ loadInitializers(App, config.modulePrefix);
 /*let addtohome =*/ window.addToHomescreen({
   // debug: true,
   maxDisplayCount: 1,
-  skipFirstVisit: true,
+  // skipFirstVisit: true,
   startDelay: 5, // seconds
   // displayPace: 24 * 60, // minutes
-  lifespan: 30, // seconds
+  lifespan: 60, // seconds
   // autostart: false
 });
 // addtohome.show();

@@ -28,7 +28,7 @@
         icon="person"
         value=account.naam
         isTouched=model.naamTouched
-        autofocus=(not hasAccount)
+        autofocus=(not (v-get account 'isValid'))
         onChange=(action (mut account.naam))
         errors=(v-get account 'naam' 'messages')
         passThru=(hash name="naam")
@@ -48,8 +48,8 @@
     <div layout="" layout-sm="row">
       {{paper-input
         flex=100
-        label="Korte omschrijving"
-        autofocus=hasAccount
+        label="Korte omschrijving *"
+        autofocus=(v-get account 'isValid')
         isTouched=model.subjectTouched
         value=model.form.subject
         maxlength=50
@@ -61,7 +61,7 @@
     <div layout="" layout-sm="row">
       {{paper-input
         flex=100
-        label="Locatie of ruimtenummer"
+        label="Locatie of ruimtenummer *"
         isTouched=model.locatieTouched
         value=model.form.locatie
         onChange=(action (mut model.form.locatie))
@@ -84,13 +84,12 @@
       <div class="flex">
         {{dom-attr image width="100%" height="auto"}}
       </div>
-      {{paper-input
+      {{paper-file-input
         flex=70
         label=""
-        type="file"
         icon="add a photo"
         value=model.form.photo
-        onFocus=(action "addHandler")
+        onImage=(action "handleImage")
         onChange=(action (mut model.form.photo))
         errors=(v-get model.form 'photo' 'messages')
         passThru=(hash accept="image/*" name="foto" capture="camera")

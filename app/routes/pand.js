@@ -10,6 +10,9 @@ const {
   String: {
     capitalize
   },
+  run: {
+    next
+  },
   getOwner
 } = Ember;
 
@@ -26,7 +29,9 @@ export default Ember.Route.extend({
   },
 
   afterModel(model/*, transition*/) {
-    this.set('imageStorage.dataURL', model.src);
-    this.set('headData.title', model.name);
+    next(() => {
+      this.set('imageStorage.dataURL', model.src);
+      this.set('headData.title', model.name);
+    });
   }
 });
