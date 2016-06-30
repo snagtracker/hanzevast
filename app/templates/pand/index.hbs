@@ -1,4 +1,4 @@
-<form action="https://getsimpleform.com/messages?form_api_token=93feec8ab273bc05e6f7015dc8e918ec" method="POST" enctype="multipart/form-data">
+<form action="https://getsimpleform.com/messages?form_api_token=93feec8ab273bc05e6f7015dc8e918ec" method="POST" enctype="multipart/form-data" {{action "handleSubmit" on="submit" preventDefault=false}} >
 {{#paper-card as |card|}}
 {{!--   {{#card.header as |header|}}
     {{#header.avatar}}
@@ -98,7 +98,12 @@
   {{/card.content}}
   {{#card.actions}}
     {{#if (and (v-get account 'isValid') (v-get model.form 'isValid'))}}
-      {{paper-button type="submit" raised=true primary=true label="Verstuur melding"}}
+      {{#paper-button type="submit" raised=true primary=true disabled=isSubmitting}}
+        {{#if isSubmitting}}
+          {{paper-icon "data usage" spin=true}}
+        {{/if}}
+        Verstuur melding
+      {{/paper-button}}
     {{else}}
       {{paper-button onClick="triggerValidation" raised=true label="Verstuur melding"}}
     {{/if}}

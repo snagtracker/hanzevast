@@ -1,11 +1,8 @@
-/*global loadImage:true */
 import Ember from 'ember';
 import { storageFor } from 'ember-local-storage';
 import ENV from '../../config/environment';
 
 const {
-  $,
-  isEmpty,
   computed
 } = Ember;
 
@@ -19,9 +16,13 @@ export default Ember.Controller.extend({
   }),
 
   image: null,
+  isSubmitting: false,
   actions: {
     handleImage(image) {
       this.setProperties({image});
+    },
+    handleSubmit() {
+      this.set('isSubmitting', true);
     },
     triggerValidation() {
       this.get('model').setProperties({

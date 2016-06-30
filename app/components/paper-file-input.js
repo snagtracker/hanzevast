@@ -1,5 +1,10 @@
+/*global loadImage:true */
 import PaperInput from 'ember-paper/components/paper-input';
 import Ember from 'ember';
+
+const {
+  $
+} = Ember;
 
 export default PaperInput.extend({
   type: 'file',
