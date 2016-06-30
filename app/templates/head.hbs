@@ -3,12 +3,12 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="format-detection" content="telephone=no">
 
-<meta name="application-name" content="Hanzevast"/>
 
 {{#with-service 'device' as |device|}}
   {{#with-service 'head-data' as |model|}}
     <title>{{model.title}}</title>
     <meta name="apple-mobile-web-app-title" content={{model.title}}>
+    <meta name="application-name" content={{model.title}}/>
 
     {{#if device.isIOS}}
     {{!-- <link rel="apple-touch-icon-precomposed" sizes="76x76"   href="apple-touch-icon-76x76.png" /> --}}
