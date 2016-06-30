@@ -34,6 +34,14 @@ export default Ember.Controller.extend({
           { maxWidth: 600 }
         );
       });
+    },
+    triggerValidation() {
+      this.get('model').setProperties({
+        naamTouched: true,
+        emailTouched: true,
+        subjectTouched: true,
+        locatieTouched: true
+      });
     }
   }
 });

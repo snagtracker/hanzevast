@@ -18,11 +18,11 @@ export default Ember.Route.extend({
   headData: service(),
 
   model(params) {
-    return {
+    return Ember.Object.create(getOwner(this).ownerInjection(), {
       src: `${ENV.rootURL}images/portefeuille/square_${params.name}.jpg`,
       name: params.name.split('-').map((p) => capitalize(p)).join(' '),
       form: Form.create(getOwner(this).ownerInjection())
-    };
+    });
   },
 
   afterModel(model/*, transition*/) {

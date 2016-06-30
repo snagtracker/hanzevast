@@ -25,7 +25,9 @@
       {{paper-input
         flex=50
         label="Naam"
+        icon="person"
         value=account.naam
+        isTouched=model.naamTouched
         autofocus=(not hasAccount)
         onChange=(action (mut account.naam))
         errors=(v-get account 'naam' 'messages')
@@ -35,6 +37,8 @@
         label="E-mail"
         flex=50
         type="email"
+        icon="email"
+        isTouched=model.emailTouched
         value=account.email
         onChange=(action (mut account.email))
         errors=(v-get account 'email' 'messages')
@@ -46,11 +50,23 @@
         flex=100
         label="Korte omschrijving"
         autofocus=hasAccount
+        isTouched=model.subjectTouched
         value=model.form.subject
         maxlength=50
         onChange=(action (mut model.form.subject))
         errors=(v-get model.form 'subject' 'messages')
         passThru=(hash name="omschrijving")
+      }}
+    </div>
+    <div layout="" layout-sm="row">
+      {{paper-input
+        flex=100
+        label="Locatie of ruimtenummer"
+        isTouched=model.locatieTouched
+        value=model.form.locatie
+        onChange=(action (mut model.form.locatie))
+        errors=(v-get model.form 'locatie' 'messages')
+        passThru=(hash name="locatie")
       }}
     </div>
     <div layout="" layout-sm="row">
@@ -70,20 +86,23 @@
       </div>
       {{paper-input
         flex=70
-        label="Foto"
+        label=""
         type="file"
+        icon="add a photo"
         value=model.form.photo
         onFocus=(action "addHandler")
         onChange=(action (mut model.form.photo))
         errors=(v-get model.form 'photo' 'messages')
-        passThru=(hash accept="image/*" name="foto")
+        passThru=(hash accept="image/*" name="foto" capture="camera")
       }}
     </div>
   {{/card.content}}
   {{#card.actions}}
-    {{#paper-button type="submit" raised=true primary=true disabled=(not (and (v-get account 'isValid') (v-get model.form 'isValid')))}}
-      Verstuur melding
-    {{/paper-button}}
+    {{#if (and (v-get account 'isValid') (v-get model.form 'isValid'))}}
+      {{paper-button type="submit" raised=true primary=true label="Verstuur melding"}}
+    {{else}}
+      {{paper-button onClick="triggerValidation" raised=true label="Verstuur melding"}}
+    {{/if}}
 {{!--     {{paper-input
       label="Verstuur"
       type="submit"
