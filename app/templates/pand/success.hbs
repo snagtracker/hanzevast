@@ -1,8 +1,28 @@
-<h1>Bedankt!</h1>
+{{#paper-card as |card|}}
+{{!--   {{#card.header as |header|}}
+    {{#header.avatar}}
+      <img src="http://www.hanzevastcapital.nl/skins/default/images/hanzevast.png" alt="Hanzevast"/>
+    {{/header.avatar}}
+    {{#header.text as |text|}}
+      {{#text.title}}Quintushuis{{/text.title}}
+      {{#text.subhead}}Schweitzerlaan 12 Groningen{{/text.subhead}}
+    {{/header.text}}
+  {{/card.header}}
+ --}}
+  {{#card.title as |title|}}
+    {{#title.text as |text|}}
+      {{#text.headline}}Bedankt voor het versturen{{/text.headline}}
+      {{#text.subhead}}De melding is verstuurd naar Hanzevast{{/text.subhead}}
+    {{/title.text}}
+    {{title.media size="sm" src=model.src}}
+  {{/card.title}}
 
-Bedankt voor het versturen van de onderhoudsmelding. We nemen zo spoedig mogelijk contact op.
-
-Het Hanzevast team.
+  {{#card.actions}}
+    {{#paper-button href=(href-to "pand")}}
+      Terug naar formulier
+    {{/paper-button}}
+  {{/card.actions}}
+{{/paper-card}}
 
 {{outlet}}
 
