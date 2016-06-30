@@ -26,6 +26,7 @@ const computedImage = computed('image.dataURL', function(key) {
   });
 
 export default HeadDataService.extend({
+  title: 'Hanzevast onderhoud',
   image: storageFor('image'),
 
   image16Promise:  computedImage,

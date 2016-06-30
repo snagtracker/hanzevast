@@ -1,17 +1,15 @@
-<title>
-  Hanzevast
-</title>
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
 
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="format-detection" content="telephone=no">
-
-    <meta name="application-name" content="Hanzevast"/>
-    <meta name="apple-mobile-web-app-title" content="Hanzevast onderhoud">
+<meta name="application-name" content="Hanzevast"/>
 
 {{#with-service 'device' as |device|}}
   {{#with-service 'head-data' as |model|}}
+    <title>{{model.title}}</title>
+    <meta name="apple-mobile-web-app-title" content={{model.title}}>
+
     {{#if device.isIOS}}
     {{!-- <link rel="apple-touch-icon-precomposed" sizes="76x76"   href="apple-touch-icon-76x76.png" /> --}}
     {{!-- <link rel="apple-touch-icon-precomposed" sizes="120x120" href="apple-touch-icon-120x120.png" /> --}}
