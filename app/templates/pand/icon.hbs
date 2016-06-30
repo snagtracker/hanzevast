@@ -1,0 +1,31 @@
+{{icon-cropper image="/images/quintushuis.jpg"}}
+
+{{#with-service 'device' as |device|}}
+  {{#with-service 'head-data' as |model|}}
+    {{#if device.isIOS}}
+    {{!-- <link rel="apple-touch-icon-precomposed" sizes="76x76"   href="apple-touch-icon-76x76.png" /> --}}
+    {{!-- <link rel="apple-touch-icon-precomposed" sizes="120x120" href="apple-touch-icon-120x120.png" /> --}}
+
+      {{!-- see https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/MobileHIG/IconMatrix.html
+      use Web clip icon sizes --}}
+      {{#with (await model.image152Promise) as |image|}}
+        <img src={{image}} title="152x152"/>
+      {{/with}}
+
+    {{!-- <link rel="apple-touch-icon-precomposed" sizes="167x178" href="apple-touch-icon-167x178.png" /> --}}
+    {{!-- <link rel="apple-touch-icon-precomposed" sizes="180x180" href="apple-touch-icon-180x180.png" /> --}}
+    {{else}}
+
+      {{#with (await model.image16Promise) as |image|}}
+        <img src={{image}} title="16x16"/>
+      {{/with}}
+      {{#with (await model.image192Promise) as |image|}}
+        <img src={{image}} title="192x192"/>
+      {{/with}}
+      {{#with (await model.image32Promise) as |image|}}
+        <img src={{image}} title="32x32"/>
+      {{/with}}
+
+    {{/if}}
+  {{/with-service}}
+{{/with-service}}

@@ -7,6 +7,11 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.route('pand', {path: ':name'}, function() {
+    // this.route('form');
+    this.route('icon');
+    this.route('success');
+  });
 });
 
 export default Router;

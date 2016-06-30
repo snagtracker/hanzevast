@@ -1,0 +1,101 @@
+<form action="https://getsimpleform.com/messages?form_api_token=93feec8ab273bc05e6f7015dc8e918ec" method="POST" enctype="multipart/form-data">
+{{#paper-card as |card|}}
+{{!--   {{#card.header as |header|}}
+    {{#header.avatar}}
+      <img src="http://www.hanzevastcapital.nl/skins/default/images/hanzevast.png" alt="Hanzevast"/>
+    {{/header.avatar}}
+    {{#header.text as |text|}}
+      {{#text.title}}Quintushuis{{/text.title}}
+      {{#text.subhead}}Schweitzerlaan 12 Groningen{{/text.subhead}}
+    {{/header.text}}
+  {{/card.header}}
+ --}}
+  {{#card.title as |title|}}
+    {{#title.text as |text|}}
+      {{#text.headline}}Onderhoudsmelding Hanzevast{{/text.headline}}
+      {{#text.subhead}}{{pand.model.name}} Groningen{{/text.subhead}}
+    {{/title.text}}
+    {{title.media size="sm" src=pand.model.src}}
+  {{/card.title}}
+
+  {{#card.content}}
+    <input type="hidden" name="redirect_to" value={{concat origin (href-to "pand.success")}}/>
+    <div layout="" layout-sm="row">
+      {{paper-input
+        flex=50
+        label="Naam"
+        value=account.naam
+        autofocus=(not hasAccount)
+        onChange=(action (mut account.naam))
+        errors=(v-get account 'naam' 'messages')
+        passThru=(hash name="naam")
+      }}
+      {{paper-input
+        label="E-mail"
+        flex=50
+        type="email"
+        value=account.email
+        onChange=(action (mut account.email))
+        errors=(v-get account 'email' 'messages')
+        passThru=(hash name="email")
+      }}
+    </div>
+    <div layout="" layout-sm="row">
+      {{paper-input
+        flex=100
+        label="Korte omschrijving"
+        autofocus=hasAccount
+        value=model.subject
+        maxlength=50
+        onChange=(action (mut model.subject))
+        errors=model.validations.attrs.subject.messages
+        passThru=(hash name="omschrijving")
+      }}
+    </div>
+    <div layout="" layout-sm="row">
+      {{paper-input
+        flex=100
+        label="Details"
+        textarea=true
+        value=model.body
+        onChange=(action (mut model.body))
+        errors=model.validations.attrs.body.messages
+        passThru=(hash name="details")
+      }}
+    </div>
+    <div layout="" layout-sm="row">
+      <div class="flex">
+        {{dom-attr image width="100%" height="auto"}}
+      </div>
+      {{paper-input
+        flex=70
+        label="Foto"
+        type="file"
+        value=model.photo
+        onFocus=(action "addHandler")
+        onChange=null
+        errors=model.validations.attrs.photo.messages
+        passThru=(hash accept="image/*" name="foto")
+      }}
+    </div>
+  {{/card.content}}
+  {{#card.actions}}
+    {{#paper-button type="submit"}}
+      Verstuur naar Hanzevast
+    {{/paper-button}}
+{{!--     {{paper-input
+      label="Verstuur"
+      type="submit"
+      onChange=null
+    }} --}}
+  {{/card.actions}}
+{{/paper-card}}
+</form>
+
+{{!-- onClick=(route-action "sendEmail" (hash
+      _cc=account.email
+      titel=model.subject
+      omschrijving=model.body
+    ))
+ --}}
+{{outlet}}

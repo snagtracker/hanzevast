@@ -1,0 +1,77 @@
+<title>
+  Hanzevast
+</title>
+
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+
+    <meta name="application-name" content="Hanzevast"/>
+    <meta name="apple-mobile-web-app-title" content="Hanzevast onderhoud">
+
+{{#with-service 'device' as |device|}}
+  {{#with-service 'head-data' as |model|}}
+    {{#if device.isIOS}}
+    {{!-- <link rel="apple-touch-icon-precomposed" sizes="76x76"   href="apple-touch-icon-76x76.png" /> --}}
+    {{!-- <link rel="apple-touch-icon-precomposed" sizes="120x120" href="apple-touch-icon-120x120.png" /> --}}
+
+      {{!-- see https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/MobileHIG/IconMatrix.html
+      use Web clip icon sizes --}}
+      {{#with (await model.image152Promise) as |image|}}
+        <link rel="apple-touch-icon-precomposed" type="image/png" href={{image}} sizes="152x152" />
+      {{/with}}
+
+    {{!-- <link rel="apple-touch-icon-precomposed" sizes="167x178" href="apple-touch-icon-167x178.png" /> --}}
+    {{!-- <link rel="apple-touch-icon-precomposed" sizes="180x180" href="apple-touch-icon-180x180.png" /> --}}
+    {{else}}
+
+      {{#with (await model.image16Promise) as |image|}}<link rel="icon" type="image/png" href={{image}} sizes="16x16" />{{/with}}
+      {{#with (await model.image192Promise) as |image|}}<link rel="icon" type="image/png" href={{image}} sizes="192x192" />{{/with}}
+      {{#with (await model.image32Promise) as |image|}}<link rel="icon" type="image/png" href={{image}} sizes="32x32" />{{/with}}
+
+    {{/if}}
+  {{/with-service}}
+{{/with-service}}
+
+{{!-- +    <!-- iPad retina icon -->
++    <link href="https://placehold.it/152"
++          sizes="152x152"
++          rel="apple-touch-icon-precomposed">
++
++    <!-- iPad retina icon (iOS < 7) -->
++    <link href="https://placehold.it/144"
++          sizes="144x144"
++          rel="apple-touch-icon-precomposed">
++
++    <!-- iPad non-retina icon -->
++    <link href="https://placehold.it/76"
++          sizes="76x76"
++          rel="apple-touch-icon-precomposed">
++
++    <!-- iPad non-retina icon (iOS < 7) -->
++    <link href="https://placehold.it/72"
++          sizes="72x72"
++          rel="apple-touch-icon-precomposed">
++
++    <!-- iPhone 6 Plus icon -->
++    <link href="https://placehold.it/180"
++          sizes="120x120"
++          rel="apple-touch-icon-precomposed">
++
++    <!-- iPhone retina icon (iOS < 7) -->
++    <link href="https://placehold.it/114"
++          sizes="114x114"
++          rel="apple-touch-icon-precomposed">
++
++    <!-- iPhone non-retina icon (iOS < 7) -->
++    <link href="https://placehold.it/57"
++          sizes="57x57"
++          rel="apple-touch-icon-precomposed">
+ --}}
+{{!-- <meta name="msapplication-TileColor"         content="#FFFFFF" />
+<meta name="msapplication-TileImage"         content="mstile-144x144.png" />
+<meta name="msapplication-square70x70logo"   content="mstile-70x70.png" />
+<meta name="msapplication-square150x150logo" content="mstile-150x150.png" />
+<meta name="msapplication-wide310x150logo"   content="mstile-310x150.png" />
+<meta name="msapplication-square310x310logo" content="mstile-310x310.png" /> --}}
